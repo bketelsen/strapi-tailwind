@@ -7,6 +7,7 @@ import { useState } from 'react'
 
 const Navigation = () => {
     const [isMobileOpen, setMobileOpen] = useState(false)
+    const [category, setCategory] = useState("")
 
     const data = useStaticQuery(graphql`
     query {
@@ -40,7 +41,7 @@ const Navigation = () => {
                                 {data.allStrapiCategory.edges.map((e) => {
                                     return (
 
-                                        <a key={e.node.slug} href={`/category/${e.node.slug}`} className="bg-indigo-700 text-white rounded-md py-2 px-3 text-sm font-medium">
+                                        <a key={e.node.slug} onClick={() => setCategory(e.node.slug)} href={`/category/${e.node.slug}`} className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                                             {e.node.plural}
                                         </a>
                                     )

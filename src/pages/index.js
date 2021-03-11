@@ -7,6 +7,7 @@ import * as React from "react"
 import { graphql, useStaticQuery } from "gatsby";
 
 import ArticleList from "../components/articles"
+import Categories from "../components/categories"
 import Layout from "../components/layout"
 import { Link } from "gatsby"
 import SEO from "../components/seo"
@@ -32,7 +33,7 @@ const IndexPage = () => {
           <ArticleList articles={data.allStrapiArticle.edges} />
         </div>
       </div>
-
+          <Categories title="See All" categories={data.allStrapiCategory.group}/>
     </Layout>
   )
 }
@@ -51,9 +52,21 @@ const query = graphql`
         }
       }
     }
+    allStrapiCategory {
+      group(field: slug) {
+        totalCount
+        edges {
+          node {
+            slug
+            name
+            plural
+          }
+        }
+      }
+    }
     allStrapiArticle(filter: {  }) {
       edges {
-        node {
+        node {  
           strapiId
           slug
           title
