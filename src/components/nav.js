@@ -35,13 +35,14 @@ const Navigation = () => {
                         </div>
                         <div className="hidden lg:block lg:ml-10">
                             <div className="flex space-x-4">
-                                <a href="/" className="bg-indigo-700 text-white rounded-md py-2 px-3 text-sm font-medium">
+                            
+                                <a href="/" onClick={() => setCategory("")} className={`${category === "" ? 'bg-indigo-700 text-white' : 'text-white hover:bg-indigo-500 hover:bg-opacity-75'} rounded-md py-2 px-3 text-sm font-medium`}>
                                     Home
                                 </a>
                                 {data.allStrapiCategory.edges.map((e) => {
                                     return (
 
-                                        <a key={e.node.slug} onClick={() => setCategory(e.node.slug)} href={`/category/${e.node.slug}`} className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                        <a key={e.node.slug} onClick={() => setCategory(e.node.slug)} href={`/category/${e.node.slug}`} className={`${category === e.node.slug ? 'bg-indigo-700 text-white' : 'text-white hover:bg-indigo-500 hover:bg-opacity-75'} rounded-md py-2 px-3 text-sm font-medium`}>
                                             {e.node.plural}
                                         </a>
                                     )
