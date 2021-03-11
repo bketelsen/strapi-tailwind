@@ -17,7 +17,7 @@ const Card = ({ article }) => (
     <div className="flex-1 bg-white p-6 flex flex-col justify-between">
         <div className="flex-1">
             <p className="text-sm font-medium text-indigo-600">
-                <a href={`${article.node.category.slug }`} className="hover:underline">
+                <a href={`/category/${article.node.category.slug }`} className="hover:underline">
                    {article.node.category.name} 
                 </a>
             </p>
