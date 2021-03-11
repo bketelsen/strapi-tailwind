@@ -5,6 +5,7 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    'gatsby-plugin-postcss',
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     {
@@ -12,6 +13,15 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: "gatsby-source-strapi",
+      options: {
+        apiURL: process.env.API_URL || "https://content.brian.dev",
+        contentTypes: ["article", "category", "writer"],
+        singleTypes: [`homepage`, `global`],
+        queryLimit: 1000,
       },
     },
     `gatsby-transformer-sharp`,
