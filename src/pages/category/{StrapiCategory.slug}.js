@@ -22,6 +22,7 @@ export const query = graphql`
           category {
             name
             slug
+            description
           }
           image {
             childImageSharp {
@@ -50,6 +51,7 @@ export const query = graphql`
     category: strapiCategory(slug: { eq: $slug }) {
       name
       plural
+      description
     }
   }
 `;
@@ -75,7 +77,7 @@ const Category = ({ data }) => {
               {category_plural}
             </h2>
             <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
-  
+              {data.category.description}
             </p>
           </div>
           <ArticleList articles={articles} />

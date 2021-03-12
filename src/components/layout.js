@@ -16,6 +16,7 @@ import PropTypes from "prop-types"
 import Seo from "./seo";
 
 const Layout = ({ children, seo }) => {
+
   const data = useStaticQuery(graphql`
   query {
     strapiGlobal {

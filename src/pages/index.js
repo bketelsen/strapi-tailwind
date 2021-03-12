@@ -33,7 +33,6 @@ const IndexPage = () => {
           <ArticleList articles={data.allStrapiArticle.edges} />
         </div>
       </div>
-          <Categories title="See All" categories={data.allStrapiCategory.group}/>
     </Layout>
   )
 }

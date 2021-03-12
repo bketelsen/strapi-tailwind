@@ -7,7 +7,21 @@ import { useState } from 'react'
 
 const Navigation = () => {
     const [isMobileOpen, setMobileOpen] = useState(false)
-    const [category, setCategory] = useState("")
+    const isPartiallyActive = ({
+        isPartiallyCurrent
+      }) => {
+        return isPartiallyCurrent
+          ? { className: "bg-indigo-700 text-white rounded-md py-2 px-3 text-sm font-medium" }
+          : {className: "text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium"}
+      }
+      const isActive = ({
+        isCurrent
+      }) => {
+        return isCurrent
+          ? { className: "bg-indigo-700 text-white rounded-md py-2 px-3 text-sm font-medium" }
+          : {className: "text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium"}
+      }
+   //   <a href="/" onClick={() => setCategory("")} className={`${category === "" ? 'bg-indigo-700 text-white' : 'text-white hover:bg-indigo-500 hover:bg-opacity-75'} rounded-md py-2 px-3 text-sm font-medium`}>
 
     const data = useStaticQuery(graphql`
     query {
@@ -20,6 +34,8 @@ const Navigation = () => {
             slug
             name
             plural
+            description
+            navigation
           }
         }
       }
@@ -35,18 +51,17 @@ const Navigation = () => {
                         </div>
                         <div className="hidden lg:block lg:ml-10">
                             <div className="flex space-x-4">
-                            
-                                <a href="/" onClick={() => setCategory("")} className={`${category === "" ? 'bg-indigo-700 text-white' : 'text-white hover:bg-indigo-500 hover:bg-opacity-75'} rounded-md py-2 px-3 text-sm font-medium`}>
-                                    Home
-                                </a>
+                            <Link getProps={isActive} to={`/`}>
+                                            Home
+                                        </Link>
                                 {data.allStrapiCategory.edges.map((e) => {
+                                    if (e.node.navigation){
                                     return (
-
-                                        <a key={e.node.slug} onClick={() => setCategory(e.node.slug)} href={`/category/${e.node.slug}`} className={`${category === e.node.slug ? 'bg-indigo-700 text-white' : 'text-white hover:bg-indigo-500 hover:bg-opacity-75'} rounded-md py-2 px-3 text-sm font-medium`}>
+                                        <Link getProps={isPartiallyActive} key={e.node.slug} to={`/category/${e.node.slug}`}>
                                             {e.node.plural}
-                                        </a>
+                                        </Link>
                                     )
-
+                                    }
                                 })}
 
                             </div>
