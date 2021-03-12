@@ -40,7 +40,7 @@
   "license": "0BSD",
   "scripts": {
     "build:development": "gatsby build",
-    "build:Azure": "export GATSBY_ROOT_URL=https://proud-plant-0ec63d210.azurestaticapps.net; gatsby build",
+    "build:azure": "export GATSBY_ROOT_URL=https://proud-plant-0ec63d210.azurestaticapps.net; gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
