@@ -2,6 +2,7 @@ import * as React from "react"
 
 import { graphql, useStaticQuery } from "gatsby"
 
+import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 import { useState } from 'react'
 
@@ -27,6 +28,13 @@ const Navigation = () => {
     query {
       strapiGlobal {
         siteName
+        favicon {
+            childImageSharp {
+              gatsbyImageData(
+                width: 50
+              )
+            }
+          }
       }
       allStrapiCategory {
         edges {
@@ -47,7 +55,11 @@ const Navigation = () => {
                 <div className="relative h-16 flex items-center justify-between lg:border-b lg:border-indigo-400 lg:border-opacity-25">
                     <div className="px-2 flex items-center lg:px-0">
                         <div className="flex-shrink-0">
-                            <img className="block h-8 w-8" src="https://tailwindui.com/img/logos/workflow-mark-indigo-300.svg" alt="Workflow" />
+
+                            <GatsbyImage 
+             className="block h-8 w-8"
+            alt="Brian Ketelsen"
+            image={data.strapiGlobal.favicon.childImageSharp.gatsbyImageData} />
                         </div>
                         <div className="hidden lg:block lg:ml-10">
                             <div className="flex space-x-4">
